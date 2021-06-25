@@ -1,1 +1,2 @@
-# password-generator1
+# password-generator
+In this project, we are given html, CSS, and starter JavaScript codes which would create a website. This website would function to give options of criterias that the user would like to have in their generated password. The user will then choose the criterias and a random password will be generated. The password generated is then displayed in the alert or written to the page.
