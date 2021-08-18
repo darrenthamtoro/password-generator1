@@ -1,15 +1,16 @@
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
-  var lowerAlpha = "abcdefghijklmnopqrstuvwxyz";
-  var upperAlpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-  var numbers = "0123456789";
-  var specials = "!@#$%^&*_-+=";
-  var pass = ""
+var lowerAlpha = "abcdefghijklmnopqrstuvwxyz";
+var upperAlpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+var numbers = "0123456789";
+var specials = "!@#$%^&*_-+=";
+
+
 // Write password to the #password input
 function writePassword() {
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
-  
+
   passwordText.value = password;
 
 }
@@ -17,14 +18,13 @@ function writePassword() {
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
 
-function generatePassword(){
-  let text;
+function generatePassword() {
   let passLength = prompt("Please enter your password length between 8 and 128 characters:", 0);
-  if (passLength >= 8 && passLength <= 128 )  {
+  if (passLength >= 8 && passLength <= 128) {
     text = "You selected " + passLength + " as your password length!";
-  } 
-  
-  document.getElementById("generate").innerHTML = text;
+  }
+
+  // document.getElementById("generate").innerHTML = text;
 
   let lowercase = confirm("Do you want your password to have lowercase?");
   let uppercase = confirm("Do you want your password to have uppercase?");
@@ -34,42 +34,34 @@ function generatePassword(){
   //let confirmcheck = confirm("Do you want your password to have lowercase?");
   //console.log(confirmcheck);
   //what confirm returns as a default
-  
-  if(confirm("Do you want your password to have lowercase?")) {
-    lowercase = true;
-  } else {
-    lowercase = false;
+
+  var pass=" " ;
+  console.log("Choices", lowercase, uppercase, numeric, specialcharacter, passLength);
+
+
+  for (let i = 0; i < passLength; i++) {
+    // pass += characters.charAt(
+    //   Math.floor(Math.random() * characters.length)
+    // )
+    if (lowercase === true) {
+      //generate random lowercase letter 
+      pass += lowerAlpha.charAt(Math.floor(Math.random() * lowerAlpha.length));
+    }
+
+    if (uppercase === true) {
+      //generate random uppercase letter
+      pass += upperAlpha.charAt(Math.floor(Math.random() * upperAlpha.length));
+    }
+    if (specialcharacter === true) {
+      pass += specials.charAt(Math.floor(Math.random() * specials.length));
+    }
+    if(numeric === true) {
+      pass += numbers.charAt(Math.floor(Math.random() * numbers.length));
+    }
+    console.log(pass, i);
   }
 
-  if(confirm("Do you want your password to have uppercase?")) {
-    uppercase = true;
-  } else {
-    uppercase = false;
-  }
-
-  if(confirm("Do you want your password to have numbers?")) {
-    numeric = true;
-  } else {
-    numeric = false;
-  }
-
-  if(confirm("Do you want your password to have special characters?")){
-    specialcharacter = true;
-  } else {
-    specialcharacter = false;
-  }
-  
-  while(passLength > pass){
-    
-  }
-
-  for (let i = 1; i <= passLength; i++) {
-    password += characters.charAt(
-      Math.floor(Math.random() * characters.length)
-    )
-  }
-  
-    return pass;
+  return pass.substring(0, passLength);
 }
 
 //create a variable to store the info for the password as string or array
